@@ -3,7 +3,7 @@ type: "module-architecture"
 title: "docs"
 description: "Technical architecture and class hierarchy for docs"
 tags: ["architecture", "uml", "pyreverse", "openwiki"]
-timestamp: "2026-07-31T07:41:48Z"
+timestamp: "2026-08-01T07:48:05Z"
 ---
 
 # Module Name: docs

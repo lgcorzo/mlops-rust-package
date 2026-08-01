@@ -118,8 +118,6 @@ def main():
     for root, dirs, files in os.walk('.'):
         dirs[:] = [d for d in dirs if d not in ['.git', 'openwiki', '__pycache__', '.pytest_cache', 'venv', 'env']]
         rel_path = os.path.normpath(root)
-        if rel_path == '.':
-            continue
         # check if it's a valid target folder. A target folder is any folder.
         target_dirs.append(rel_path)
 
@@ -129,16 +127,20 @@ def main():
     logs = ["# OpenWiki Logs\n\n- Initialized OKF documentation."]
 
     for d in target_dirs:
-        out_dir = os.path.join('openwiki', os.path.dirname(d))
-        if out_dir:
-            os.makedirs(out_dir, exist_ok=True)
-
-        module_name = os.path.basename(d)
-        src_path = d.replace('\\', '/') + '/'
-        if src_path.startswith('./'):
-            src_path = src_path[2:]
-
-        md_file = os.path.join('openwiki', f"{d}.md")
+        if d == '.':
+            out_dir = 'openwiki'
+            module_name = 'root'
+            src_path = './'
+            md_file = os.path.join('openwiki', "root.md")
+        else:
+            out_dir = os.path.join('openwiki', os.path.dirname(d))
+            if out_dir:
+                os.makedirs(out_dir, exist_ok=True)
+            module_name = os.path.basename(d)
+            src_path = d.replace('\\', '/') + '/'
+            if src_path.startswith('./'):
+                src_path = src_path[2:]
+            md_file = os.path.join('openwiki', f"{d}.md")
 
         # 1. Run pyreverse for class diagram
         class_diagram = ""

@@ -1,27 +1,24 @@
 ---
 type: "module-architecture"
-title: "plans"
-description: "Technical architecture and class hierarchy for plans"
+title: "root"
+description: "Technical architecture and class hierarchy for root"
 tags: ["architecture", "uml", "pyreverse", "openwiki"]
 timestamp: "2026-08-01T07:48:05Z"
 ---
 
-# Module Name: plans
+# Module Name: root
 
-* **Source Directory Reference:** `docs/plans/`
+* **Source Directory Reference:** `./`
 * **Package Dependency:** [List upstream and downstream package boundaries]
 
 ## 1. Executive Summary & Purpose
-Deterministic architectural mapping of plans.
+Deterministic architectural mapping of root.
 
 ## 2. UML 2.0 Class & Inheritance Architecture (Deterministic)
 The following class diagram models the object-oriented structure, explicit inheritance hierarchies, and polymorphic interface implementations derived from local AST analysis:
 
 ```mermaid
 classDiagram
-    class EmptyModule {
-        %% No python classes found
-    }
 ```
 
 ## 3. Package & Class Relations
@@ -31,7 +28,19 @@ classDiagram
 
 ```mermaid
 classDiagram
-    class plans {}
+    class app {}
+    class re {}
+    app --> re : imports
+    class os {}
+    app --> os : imports
+    class subprocess {}
+    app --> subprocess : imports
+    class ast {}
+    app --> ast : imports
+    class sys {}
+    app --> sys : imports
+    class datetime {}
+    app --> datetime : imports
 ```
 
 ## 4. Execution Flow & Runtime Behavior

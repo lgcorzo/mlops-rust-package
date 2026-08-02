@@ -3,7 +3,7 @@ type: "module-architecture"
 title: "root"
 description: "Technical architecture and class hierarchy for root"
 tags: ["architecture", "uml", "pyreverse", "openwiki"]
-timestamp: "2026-08-01T07:48:05Z"
+timestamp: "2026-08-02T08:12:58Z"
 ---
 
 # Module Name: root
@@ -29,18 +29,18 @@ classDiagram
 ```mermaid
 classDiagram
     class app {}
-    class re {}
-    app --> re : imports
-    class os {}
-    app --> os : imports
-    class subprocess {}
-    app --> subprocess : imports
     class ast {}
     app --> ast : imports
-    class sys {}
-    app --> sys : imports
     class datetime {}
     app --> datetime : imports
+    class subprocess {}
+    app --> subprocess : imports
+    class os {}
+    app --> os : imports
+    class re {}
+    app --> re : imports
+    class sys {}
+    app --> sys : imports
 ```
 
 ## 4. Execution Flow & Runtime Behavior

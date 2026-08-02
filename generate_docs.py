@@ -265,10 +265,18 @@ The following sequence diagram outlines the execution lifecycle and message pass
     if os.path.exists('classes.mmd'): os.remove('classes.mmd')
     if os.path.exists('packages.mmd'): os.remove('packages.mmd')
 
-    with open('openwiki/index.md', 'w', encoding='utf-8') as f:
-        f.write("# OpenWiki Index\n\nWelcome to the deterministic OpenWiki.\n")
+    index_lines = ["# OpenWiki Index\n\nWelcome to the deterministic OpenWiki.\n"]
+    for d in target_dirs:
+        if d == '.':
+            index_lines.append("- [root](root.md)")
+        else:
+            p = d.replace('\\', '/')
+            index_lines.append(f"- [{d}]({p}.md)")
 
-    with open('openwiki/logs.md', 'w', encoding='utf-8') as f:
+    with open('openwiki/index.md', 'w', encoding='utf-8') as f:
+        f.write("\n".join(index_lines) + "\n")
+
+    with open('openwiki/logs.md', 'a', encoding='utf-8') as f:
         f.write("\n".join(logs) + "\n")
 
 if __name__ == '__main__':

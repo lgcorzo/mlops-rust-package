@@ -99,7 +99,9 @@ def generate_package_diagram(directory):
                     continue
 
     lines = ["classDiagram"]
-    pkg_name = os.path.basename(os.path.abspath(directory))
+    pkg_name = os.path.basename(os.path.normpath(directory))
+    if directory == '.':
+        pkg_name = 'root'
     lines.append(f"    class {pkg_name} {{}}")
     for imp in set(imports):
         if imp:
@@ -151,7 +153,12 @@ def main():
                 # pyreverse outputs to classes.mmd and packages.mmd in current dir
                 # clear old ones
                 if os.path.exists('classes.mmd'): os.remove('classes.mmd')
-                subprocess.run(['pyreverse', d, '-o', 'mmd'], capture_output=True, text=True)
+                py_files = []
+                for file in os.listdir(d):
+                    if file.endswith('.py'):
+                        py_files.append(os.path.join(d, file))
+                if py_files:
+                    subprocess.run(['pyreverse'] + py_files + ['-o', 'mmd'], capture_output=True, text=True)
                 if os.path.exists('classes.mmd'):
                     with open('classes.mmd', 'r') as f:
                         class_diagram = f.read().strip()

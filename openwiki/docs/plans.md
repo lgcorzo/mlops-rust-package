@@ -3,7 +3,7 @@ type: "module-architecture"
 title: "plans"
 description: "Technical architecture and class hierarchy for plans"
 tags: ["architecture", "uml", "pyreverse", "openwiki"]
-timestamp: "2026-08-02T08:12:58Z"
+timestamp: "2026-08-03T08:02:29Z"
 ---
 
 # Module Name: plans
